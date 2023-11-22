@@ -1,0 +1,34 @@
+diff --git a/dist/vite/plugin.js b/dist/vite/plugin.js
+index c1f8b2c1ab61873721e9d26a817d12adf7ce1ef4..1123313be75c626d93e8b4d9e2fdb5f5988dafdd 100644
+--- a/dist/vite/plugin.js
++++ b/dist/vite/plugin.js
+@@ -451,11 +451,7 @@ const remixVitePlugin = (options = {}) => {
+         ...viteUserConfig,
+         mode: viteConfig.mode,
+         server: {
+-          ...viteUserConfig.server,
+-          // when parent compiler runs in middleware mode to support
+-          // custom servers, we don't want the child compiler also
+-          // run in middleware mode as that will cause websocket port conflicts
+-          middlewareMode: false
++          hmr: false
+         },
+         configFile: false,
+         envFile: false,
+@@ -467,15 +463,7 @@ const remixVitePlugin = (options = {}) => {
+         // disk from the child compiler. This is important in the
+         // production build because the child compiler is a Vite dev
+         // server and will generate incorrect manifests.
+-        .filter(plugin => typeof plugin === "object" && plugin !== null && "name" in plugin && plugin.name !== "remix" && plugin.name !== "remix-hmr-updates"), {
+-          name: "no-hmr",
+-          handleHotUpdate() {
+-            // parent vite server is already sending HMR updates
+-            // do not send duplicate HMR updates from child server
+-            // which log confusing "page reloaded" messages that aren't true
+-            return [];
+-          }
+-        }]
++        .filter(plugin => typeof plugin === "object" && plugin !== null && "name" in plugin && plugin.name !== "remix" && plugin.name !== "remix-hmr-updates")]
+       });
+       await viteChildCompiler.pluginContainer.buildStart({});
+     },

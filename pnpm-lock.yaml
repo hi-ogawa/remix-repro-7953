@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@remix-run/dev@0.0.0-nightly-fd8d3a2-20231121':
+    hash: wofe5nogikezqqaexwg23otbzi
+    path: patches/@remix-run__dev@0.0.0-nightly-fd8d3a2-20231121.patch
+
 dependencies:
   '@remix-run/express':
     specifier: 0.0.0-nightly-fd8d3a2-20231121
@@ -30,7 +35,7 @@ dependencies:
 devDependencies:
   '@remix-run/dev':
     specifier: 0.0.0-nightly-fd8d3a2-20231121
-    version: 0.0.0-nightly-fd8d3a2-20231121(typescript@5.3.2)(vite@5.0.2)
+    version: 0.0.0-nightly-fd8d3a2-20231121(patch_hash=wofe5nogikezqqaexwg23otbzi)(typescript@5.3.2)(vite@5.0.2)
   '@remix-run/eslint-config':
     specifier: 0.0.0-nightly-fd8d3a2-20231121
     version: 0.0.0-nightly-fd8d3a2-20231121(eslint@8.54.0)(react@18.2.0)(typescript@5.3.2)
@@ -1287,7 +1292,7 @@ packages:
     dev: true
     optional: true
 
-  /@remix-run/dev@0.0.0-nightly-fd8d3a2-20231121(typescript@5.3.2)(vite@5.0.2):
+  /@remix-run/dev@0.0.0-nightly-fd8d3a2-20231121(patch_hash=wofe5nogikezqqaexwg23otbzi)(typescript@5.3.2)(vite@5.0.2):
     resolution: {integrity: sha512-M1qTT8kTIkThSxoyEBFv3CtsY9TbM1lIObbqpuVwkdXU3/i+6nsSCSpzyeaqZEYmnh6Jjxcl78aPXXs2q5wU9A==}
     engines: {node: '>=18.0.0'}
     hasBin: true
@@ -1376,6 +1381,7 @@ packages:
       - ts-node
       - utf-8-validate
     dev: true
+    patched: true
 
   /@remix-run/eslint-config@0.0.0-nightly-fd8d3a2-20231121(eslint@8.54.0)(react@18.2.0)(typescript@5.3.2):
     resolution: {integrity: sha512-OTCIf8BdYyS4ZBhDTWSjHae2qRyuoaOkJjGp4K+o4I+kYxyxX7R8iTqdcMJpyqUgn+mnJPrvidMEXQ6eHE90YQ==}

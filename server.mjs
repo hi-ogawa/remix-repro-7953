@@ -1,19 +1,26 @@
 import {
-  unstable_createViteServer,
   unstable_loadViteServerBuild,
 } from "@remix-run/dev";
 import { createRequestHandler } from "@remix-run/express";
 import { installGlobals } from "@remix-run/node";
 import express from "express";
+import http from "node:http";
+import { createServer } from "vite";
 
 installGlobals();
 
-let vite =
-  process.env.NODE_ENV === "production"
-    ? undefined
-    : await unstable_createViteServer();
-
 const app = express();
+
+const server = http.createServer(app);
+
+let vite = await createServer({
+  server: {
+    middlewareMode: true,
+    hmr: {
+      server,
+    },
+  }
+})
 
 // handle asset requests
 if (vite) {
@@ -37,4 +44,4 @@ app.all(
 );
 
 const port = 3000;
-app.listen(port, () => console.log("http://localhost:" + port));
+server.listen(port, () => console.log("http://localhost:" + port));
